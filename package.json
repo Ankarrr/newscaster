@@ -7,5 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@farcaster/hub-nodejs": "^0.10.17",
+    "javascript-time-ago": "^2.5.9"
+  },
+  "devDependencies": {
+    "tsx": "^4.1.2",
+    "typescript": "^5.2.2"
+  }
 }
