@@ -12,6 +12,7 @@ import {
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en";
 import { err, ok, Result } from "neverthrow";
+import 'dotenv/config';
   
 TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo("en-US");
@@ -20,9 +21,8 @@ const timeAgo = new TimeAgo("en-US");
  * Populate the following constants with your own values
  */
 
-const HUB_URL = "nemes.farcaster.xyz:2283"; // URL of the Hub
-const FIDS = [194467, 101]; // User IDs to fetch casts for
-
+const HUB_URL = process.env.MAINNET_HUB_URL; // URL of the Hub
+const FIDS = [194467]; // User IDs to fetch casts for
 
 /**
  * Returns a user's casts which are not replies to any other casts in reverse chronological order.
