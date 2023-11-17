@@ -13,7 +13,7 @@ yarn tsx postCast.ts
 
 # ENV file
 
-Please reate a .env file.
+Please create a .env file.
 
 ```
 TESTNET_HUB_URL=testnet1.farcaster.xyz:2283
