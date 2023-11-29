@@ -1,5 +1,7 @@
 # Install
 
+Please use node version > v18
+
 ```
 yarn
 ```
