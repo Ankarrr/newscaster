@@ -2,9 +2,9 @@ import 'dotenv/config';
 import { createPublicClient, createWalletClient, http } from 'viem';
 import { privateKeyToAccount } from 'viem/accounts';
 import { optimism } from 'viem/chains';
-import { BundlerAbi, IdGatewayAbi } from './ABIs/Abis';
+import { BundlerAbi, IdGatewayAbi } from '../ABIs/Abis';
 import { ViemLocalEip712Signer } from '@farcaster/hub-nodejs';
-import { keyGateWayAbi } from './ABIs/keyGatewayAbi';
+import { keyGateWayAbi } from '../ABIs/keyGatewayAbi';
 
 const OWNER = "0x33b8287511ac7F003902e83D642Be4603afCd876";
 const SIGNER = process.env.SIGNER; // <REQUIRED>
