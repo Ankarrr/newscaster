@@ -8,17 +8,8 @@ yarn
 
 # Run scripts
 
-```
-yarn tsx getFeeds.ts 
-yarn tsx postCast.ts
-```
-
-# ENV file
-
-Please create a .env file.
+Please create a .env file follow .env.example
 
 ```
-TESTNET_HUB_URL=testnet1.farcaster.xyz:2283
-MAINNET_HUB_URL=nemes.farcaster.xyz:2283
-SIGNER=YOUR-KEY
+yarn tsx examples/getFeeds.ts 
 ```
