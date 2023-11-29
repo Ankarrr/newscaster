@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@farcaster/hub-nodejs": "^0.10.17",
+    "@farcaster/hub-nodejs": "^0.10.18",
     "ethers": "^6.8.1",
     "javascript-time-ago": "^2.5.9",
     "viem": "^1.19.5"
