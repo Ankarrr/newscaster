@@ -22,7 +22,7 @@ const timeAgo = new TimeAgo("en-US");
  */
 
 const HUB_URL = process.env.MAINNET_HUB_URL; // URL of the Hub
-const FIDS = [194467]; // User IDs to fetch casts for
+const FIDS = [196424]; // User IDs to fetch casts for
 
 /**
  * Returns a user's casts which are not replies to any other casts in reverse chronological order.
@@ -81,7 +81,7 @@ const getPrimaryCastsByFid = async (fid: number, client: HubRpcClient): HubAsync
     const unixTime = fromFarcasterTime(cast.data.timestamp)._unsafeUnwrap();
     const dateString = timeAgo.format(new Date(unixTime));
   
-    const { text, mentions, mentionsPositions } = cast.data.castAddBody;
+    const { text, mentions, mentionsPositions, embeds } = cast.data.castAddBody;
     const encoder = new TextEncoder();
     const bytes = encoder.encode(text);
   
@@ -100,12 +100,15 @@ const getPrimaryCastsByFid = async (fid: number, client: HubRpcClient): HubAsync
     // Remove newlines from the message text
     const textNoLineBreaks = textWithMentions.replace(/(\r\n|\n|\r)/gm, " ");
   
-    return `${fname}: ${textNoLineBreaks}\n${dateString}\n`;
+    return {
+      text: `${fname}: ${textNoLineBreaks}\n${dateString}`,
+      embeds
+    };
   };
   
   const getFeeds = async (FIDS) => {
-    // const client = getInsecureHubRpcClient(HUB_URL); // Use this if you're not using SSL
-    const client = getSSLHubRpcClient(HUB_URL);
+    const client = getInsecureHubRpcClient(HUB_URL); // Use this if you're not using SSL
+    // const client = getSSLHubRpcClient(HUB_URL);
   
     // 1. Create a mapping of fids to fnames, which we'll need later to display messages
     const fidToFname = new Map<number, string>();
@@ -137,7 +140,9 @@ const getPrimaryCastsByFid = async (fid: number, client: HubRpcClient): HubAsync
     const stringifiedCasts = await Promise.all(sortedCasts.map((c) => castToString(c, fidToFname, client))); // convert casts to printable strings
   
     for (const outputCast of stringifiedCasts) {
-      console.log(outputCast);
+      console.log(outputCast.text);
+      console.log(outputCast.embeds);
+      console.log("\n");
     }
   
     // 3. Close the connection
