@@ -12,11 +12,11 @@ import 'dotenv/config';
 // Signer private key registered with the Hub (see write-data example)
 const SIGNER = process.env.SIGNER; // <REQUIRED>
 // Fid owned by the custody address
-const FID = 194467; // <REQUIRED>
+const FID = 196424; // <REQUIRED>
 
 // Testnet Configuration
-const HUB_URL = process.env.TESTNET_HUB_URL; // URL + Port of the Hub
-const NETWORK = FarcasterNetwork.TESTNET; // Network of the Hub
+const HUB_URL = process.env.MAINNET_HUB_URL; // URL + Port of the Hub
+const NETWORK = FarcasterNetwork.MAINNET; // Network of the Hub
 
 (async () => {
     // Set up the signer
@@ -56,7 +56,7 @@ const NETWORK = FarcasterNetwork.TESTNET; // Network of the Hub
       dataOptions,
       ed25519Signer,
     );
-    castResults.push(cast);
+    // castResults.push(cast);
   
     /**
      * Example 2: A cast with mentions
@@ -77,22 +77,23 @@ const NETWORK = FarcasterNetwork.TESTNET; // Network of the Hub
     // castResults.push(castWithMentions);
   
     /**
-     * Example 3: A cast with mentions and an attachment
+     * Example 3: A cast with an attachment
      *
      * "Hey @dwr, check this out!"
      */
     const castWithMentionsAndAttachment = await makeCastAdd(
       {
-        text: "Hey , check this out!",
-        embeds: [{ url: "https://farcaster.xyz" }],
+        text: "",
+        embeds: [{ url: "https://i.imgur.com/QHXuy5L.jpg" }],
         embedsDeprecated: [],
-        mentions: [3],
-        mentionsPositions: [4],
+        mentions: [],
+        mentionsPositions: [],
+        parentUrl: "chain://eip155:1/erc721:0xfd8427165df67df6d7fd689ae67c8ebf56d9ca61", // MEMES
       },
       dataOptions,
       ed25519Signer,
     );
-    // castResults.push(castWithMentionsAndAttachment);
+    castResults.push(castWithMentionsAndAttachment);
   
     /**
      * Example 4: A cast with mentions and an attachment, and a link in the text
@@ -187,7 +188,7 @@ const NETWORK = FarcasterNetwork.TESTNET; // Network of the Hub
       ed25519Signer,
     );
     // castResults.push(castReplyingToAUrl);
-  
+
     /**
      * Step 3: Broadcast CastAdd messages to Hub
      *
